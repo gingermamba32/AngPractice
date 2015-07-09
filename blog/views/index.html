@@ -1,0 +1,63 @@
+<!DOCTYPE html>	
+<html>
+<head>
+	<title></title>
+</head>
+<body ng-app="app">
+<form method="post" action="/api/posts">
+<div ng-controller="postCtrl">	
+	<h1>BLOG POST</h1>
+	<input ng-model="postname" name="name"/>
+	<input ng-model="posttext" name="text"/>
+	<input type="submit"  ng-click="addpost()"/>
+</form>
+
+
+
+
+	<ul>
+		<li ng-repeat="post in posts">
+			{{post.name}}
+			{{post.text}}
+		</li>
+
+	</ul>
+
+
+
+</div>
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script type="text/javascript">
+var app = angular.module('app', []);
+app.controller('postCtrl', function($scope, $http){
+	
+	$http.get('http://localhost:3000/api/posts')
+		.success(function(posts){
+			$scope.posts = posts
+		})
+
+	 $scope.addpost = function () {
+	 	if ($scope.postname && $scope.posttext){
+	 		$http.post('/api/posts', {
+	 			name: $scope.postname, 
+	 			text: $scope.posttext
+	 		})
+	 		.success(function(post){
+	 			$scope.posts.unshift(post);
+				$scope.postname=null;
+	 			$scope.posttext=null;
+	 		})
+	 	}
+	}
+});
+
+
+
+</script>
+</body>
+</html>
