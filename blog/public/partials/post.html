@@ -1,0 +1,25 @@
+	
+
+	<h1>BLOG POST</h1>
+	<form method="post" action="/api/posts">
+	
+	<input ng-model="postname" name="name"/>
+	<input ng-model="posttext" name="text"/>
+	<input type="submit"  ng-click="addpost()"/>
+</form>
+
+
+
+
+	<ul>
+		<li ng-repeat="post in posts | orderBy:'-date'">
+			{{post.name}}
+			{{post.text}}
+		</li>
+
+	</ul>
+
+
+
+
+
