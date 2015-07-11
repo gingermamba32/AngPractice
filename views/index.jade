@@ -8,6 +8,13 @@ html(lang="en", ng-app="app")
 		script(src="javascripts/module.js")
 		script(src="javascripts/postctrl.js")
 		script(src="javascripts/routes.js")
+		script(src="javascripts/loginCtrl.js")
 	body
-	p test
+	ul.nav
+		li
+			a(href="/#/") Posts
+		li
+			a(href="/#/register") Register
+		li
+			a(href="/#/login") Login
 		div(ng-view)
